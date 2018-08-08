@@ -1,20 +1,27 @@
 package com.udacity.gradle.builditbigger;
 
+import android.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bkk.android.javajokes.Joker;
 
 
 public class MainActivity extends AppCompatActivity {
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    }
+
+    } // onCreate()
 
 
     @Override
@@ -40,9 +47,13 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    Joker joker1 = new Joker();
+
+
     public void tellJoke(View view) {
-        Toast.makeText(this, "derp", Toast.LENGTH_SHORT).show();
+        String joke1 = joker1.getJoke();
+
+
     }
 
-
-}
+} // class MainActivity

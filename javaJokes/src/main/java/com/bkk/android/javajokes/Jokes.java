@@ -5,7 +5,7 @@ import java.util.Random;
 
 import static java.util.Arrays.asList;
 
-public class Joker {
+public class Jokes {
 
     List<String> alltheJokes =  asList("joke1"
             , "joke2", "joke3"
@@ -20,4 +20,4 @@ public class Joker {
         return alltheJokes.get(ranNum);
     }
 
-}// class Joker
+}// class Jokes

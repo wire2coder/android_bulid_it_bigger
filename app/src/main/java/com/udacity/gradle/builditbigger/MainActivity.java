@@ -1,6 +1,5 @@
 package com.udacity.gradle.builditbigger;
 
-import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.util.Pair;
@@ -8,10 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bkk.android.javajokes.Joker;
+import com.bkk.android.javajokes.Jokes;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -49,11 +47,11 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    Joker joker1 = new Joker();
+    Jokes jokes1 = new Jokes();
 
 
     public void tellJoke(View view) {
-        String joke1 = joker1.getJoke();
+        String joke1 = jokes1.getJoke();
         new EndpointsAsyncTask().execute( new Pair<Context, String> (this
                 , joke1 ) );
 

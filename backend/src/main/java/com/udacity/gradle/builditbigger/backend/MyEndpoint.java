@@ -16,6 +16,7 @@ import javax.inject.Named;
                 packagePath = ""
         )
 )
+
 public class MyEndpoint {
 
     /** A simple endpoint method that takes a name and says Hi back */
@@ -27,4 +28,4 @@ public class MyEndpoint {
         return response;
     }
 
-}
+} // class MyEndpoint

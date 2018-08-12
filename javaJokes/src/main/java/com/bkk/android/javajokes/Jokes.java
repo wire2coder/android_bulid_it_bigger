@@ -7,10 +7,16 @@ import static java.util.Arrays.asList;
 
 public class Jokes {
 
-    List<String> alltheJokes =  asList("joke1"
-            , "joke2", "joke3"
-            ,"joke4","joke5"
-            ,"joke6","joke7");
+    // asList is an "immutable" list
+    List<String> alltheJokes =  asList(
+            "What do you call the security outside of a Samsung Store?"
+            , "Why was the stadium so cold?"
+            , "What do you call a bee that was born is the United States?"
+            , "Why can't a bike stand up on it's own?"
+            , "What do we call a crying sister?"
+            , "Why was the king only a foot tall?"
+            , "What kind of music is a balloon scared of?"
+    );
 
 
 

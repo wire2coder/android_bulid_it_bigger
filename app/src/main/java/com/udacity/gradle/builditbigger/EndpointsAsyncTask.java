@@ -1,10 +1,12 @@
 package com.udacity.gradle.builditbigger;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v4.util.Pair;
 import android.widget.Toast;
 
+import com.bkk.android.showjokes.ShowJokesActivity;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
@@ -29,10 +31,12 @@ public class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, S
                     // - turn off compression when running against local devappserver
                     .setRootUrl("http://10.0.2.2:8080/_ah/api/")
                     .setGoogleClientRequestInitializer(new GoogleClientRequestInitializer() {
+
                         @Override
                         public void initialize(AbstractGoogleClientRequest<?> abstractGoogleClientRequest) throws IOException {
                             abstractGoogleClientRequest.setDisableGZipContent(true);
                         }
+
                     });
             // end options for devappserver
 
@@ -40,10 +44,11 @@ public class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, S
         }
 
         context = params[0].first;
-        String name = params[0].second;
+//        String name = params[0].second;
+        String joke = params[0].second;
 
         try {
-            return myApiService.sayHi(name).execute().getData();
+            return myApiService.sayHi(joke).execute().getData();
         } catch (IOException e) {
             return e.getMessage();
         }
@@ -51,7 +56,15 @@ public class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, S
 
     @Override
     protected void onPostExecute(String result) {
-        Toast.makeText(context, result, Toast.LENGTH_SHORT).show();
-    }
+//        Toast.makeText(context, result, Toast.LENGTH_SHORT).show();
+
+        // Project requirement, click button >> lauch new activity (intent)
+        Intent ShowJokesActivity = new Intent(context, ShowJokesActivity.class);
+
+        ShowJokesActivity.putExtra("gce_intent_data", result);
+        context.startActivity(ShowJokesActivity);
+
+
+    } // onPostExecute()
 
 } // class EndpointsAsyncTask

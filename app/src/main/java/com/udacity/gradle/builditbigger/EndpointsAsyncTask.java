@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v4.util.Pair;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.bkk.android.showjokes.ShowJokesActivity;
@@ -19,6 +21,25 @@ public class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, S
 
     private static MyApi myApiService = null;
     private Context context;
+
+    // for ProgressBar
+    private View rootView;
+    private ProgressBar progressBar1;
+
+
+    public EndpointsAsyncTask(ProgressBar progressBar) {
+        this.progressBar1 = progressBar;
+    }
+
+
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+
+        // make progress bar visible
+        progressBar1.setVisibility(View.VISIBLE);
+    }
+
 
     @Override
     protected String doInBackground(Pair<Context, String>... params) {
@@ -59,6 +80,7 @@ public class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, S
 //        Toast.makeText(context, result, Toast.LENGTH_SHORT).show();
 
         // Project requirement, click button >> lauch new activity (intent)
+        progressBar1.setVisibility(View.GONE);
         Intent ShowJokesActivity = new Intent(context, ShowJokesActivity.class);
 
         ShowJokesActivity.putExtra("gce_intent_data", result);

@@ -7,19 +7,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.bkk.android.javajokes.Jokes;
 
 
 public class MainActivity extends AppCompatActivity {
+    // MainActivity is SHARED between FREE and PAID version
 
-
+    private ProgressBar progressBar1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        progressBar1 = findViewById(R.id.progressBar1);
 
     } // onCreate()
 
@@ -47,12 +51,13 @@ public class MainActivity extends AppCompatActivity {
 //        return super.onOptionsItemSelected(item);
 //    }
 
+
     Jokes jokes1 = new Jokes();
 
-
     public void tellJoke(View view) {
+
         String joke1 = jokes1.getJoke();
-        new EndpointsAsyncTask().execute( new Pair<Context, String> (this, joke1 ) );
+        new EndpointsAsyncTask(progressBar1).execute( new Pair<Context, String> (this, joke1 ) );
 
     }
 

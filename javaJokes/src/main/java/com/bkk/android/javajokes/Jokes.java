@@ -19,11 +19,13 @@ public class Jokes {
     );
 
 
-
     public String getJoke() {
+
         // making a random number
         int ranNum = new Random().nextInt(6);
         return alltheJokes.get(ranNum);
-    }
+
+    } // getJokes()
+
 
 }// class Jokes

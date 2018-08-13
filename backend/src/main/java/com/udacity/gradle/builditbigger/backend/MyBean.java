@@ -9,8 +9,8 @@ public class MyBean {
         return myData;
     }
 
-    public void setData(String data) {
-        myData = data;
+    public void setData(String string1) {
+        myData = string1;
     }
 
 } // class MyBean

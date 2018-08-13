@@ -12,8 +12,8 @@ public class ShowJokesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_show_jokes);
 
         String gce_intent_data = getIntent().getStringExtra("gce_intent_data");
-        TextView tv_gce_result = findViewById(R.id.tv_gce_result);
 
+        TextView tv_gce_result = findViewById(R.id.tv_gce_result);
         tv_gce_result.setText(gce_intent_data);
 
     } // onCreate()

@@ -65,27 +65,27 @@ public class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, S
         }
 
         context = params[0].first;
-//        String name = params[0].second;
-        String joke = params[0].second;
+        String asdf = params[0].second;
 
         try {
-            return myApiService.sayHi(joke).execute().getData();
+            return myApiService.sayHi(asdf).execute().getData();
+            // now go to onPostExecute()
+
         } catch (IOException e) {
             return e.getMessage();
         }
-    }
+
+    } // doInBackground()
 
     @Override
     protected void onPostExecute(String result) {
-//        Toast.makeText(context, result, Toast.LENGTH_SHORT).show();
 
         // Project requirement, click button >> lauch new activity (intent)
         progressBar1.setVisibility(View.GONE);
-        Intent ShowJokesActivity = new Intent(context, ShowJokesActivity.class);
 
+        Intent ShowJokesActivity = new Intent(context, ShowJokesActivity.class);
         ShowJokesActivity.putExtra("gce_intent_data", result);
         context.startActivity(ShowJokesActivity);
-
 
     } // onPostExecute()
 

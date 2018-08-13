@@ -42,14 +42,21 @@ android {
             applicationId "com.udacity.gradle.builditbigger.paid"
         }
     }
+    sourceSets {
+//        project requirement, AndroidManifest file for the FREE version that include advertisement
+        free {
+            manifest.srcFile 'src/free/AndroidManifest.xml'
+        }
+    }
 
 }
 
 dependencies {
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     endpointsServer project(path: ':backend', configuration: 'endpoints')
+
     implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.google.android.gms:play-services-ads:11.8.0'
     implementation 'com.google.api-client:google-api-client:1.23.0'
     implementation 'com.google.http-client:google-http-client-android:1.23.0'
     implementation 'com.google.code.findbugs:jsr305:3.0.1'
@@ -61,27 +68,19 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test:rules:1.0.2'
+
     /* https://stackoverflow.com/questions/45541666/espresso-test-failing-no-interface-method-trackusage-in-usagetracker-java */
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-
 
     /* stackoverflow.com/questions/50117626/conflict-with-dependency-com-android-supportsupport-annotations-in-project */
     implementation 'com.android.support:support-annotations:27.1.1'
 
-    /*
-
-    Now we need to declare a compile time dependency on the project :javaJokes
-
-    This bit is a little tricky. The Java plugin defines an extra "default"
-    configuration we haven't talked about yet. It adds its output: its JAR, to
-    that configuration. When we declare our dependency on the :javaJokes project,
-    we're actually depending on the "default" configuration of :javaJokes, which
-    contains the output JAR.
-
-    */
-
     // the Java Library I created
     compile project(':javaJokes')
     compile project(':showjokes')
+
+    // project requirement, remove Advertisement from Paidversion
+//    implementation 'com.google.android.gms:play-services-ads:11.8.0'
+    freeImplementation 'com.google.android.gms:play-services-ads:11.8.0'
 
 }

@@ -36,6 +36,8 @@ public class AsyncTaskTest {
 //            e.printStackTrace();
 //        }
 
+        // TODO: The tests must verify the return from the AsyncTask call to make sure that it's loading correctly the jokes from the GCE.
+
         onView(withId(R.id.tv_gce_result)).check(matches(not(withText(""))));
 
     }

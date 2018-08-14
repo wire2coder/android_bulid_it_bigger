@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v4.util.Pair;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -25,6 +26,8 @@ public class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, S
     // for ProgressBar
     private View rootView;
     private ProgressBar progressBar1;
+
+    public static String connectionError = "no";
 
 
     public EndpointsAsyncTask(ProgressBar progressBar) {
@@ -67,18 +70,28 @@ public class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, S
         context = params[0].first;
         String asdf = params[0].second;
 
+
+
         try {
-            return myApiService.sayHi(asdf).execute().getData();
-            // now go to onPostExecute()
+            return myApiService.sayHi(asdf).execute().getJoke();
 
         } catch (IOException e) {
-            return e.getMessage();
+            // for debugging
+//            Log.d("tag111", e.getMessage() );
+
+
+            connectionError = "connectionerror:111";
+            return connectionError;
+//            return e.getMessage();
         }
 
+        // now go to onPostExecute()
     } // doInBackground()
 
     @Override
     protected void onPostExecute(String result) {
+        // for debugging
+//        Log.d("tag1112", result);
 
         // Project requirement, click button >> lauch new activity (intent)
         progressBar1.setVisibility(View.GONE);

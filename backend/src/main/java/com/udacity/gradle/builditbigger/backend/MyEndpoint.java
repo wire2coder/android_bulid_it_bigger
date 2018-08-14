@@ -28,9 +28,10 @@ public class MyEndpoint {
 
 //        response.setData("Hi, " + name);
         // jokes are being display on the web browser
-        response.setData(jokes1.getJoke());
+        response.setJoke(jokes1.getJoke());
 
         return response;
     }
+
 
 } // class MyEndpoint
